@@ -17,7 +17,6 @@ public class KeyboardDebugger : MonoBehaviour
 	
     void Awake()
     {
-        int i = 0;
         
     }
 

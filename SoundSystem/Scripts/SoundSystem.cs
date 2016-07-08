@@ -45,8 +45,11 @@ public class SoundSystem : MonoBehaviour
             ClipEntry entry = clips[lookupTable[clipName]];
             if (!entry.loaded)
             {
-                entry.loaded = true;
                 entry.clip = Resources.Load<AudioClip>(entry.path);
+                if (entry.clip != null)
+                {
+                    entry.loaded = true;
+                }
             }
         }
     }

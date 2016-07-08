@@ -27,7 +27,7 @@ public class SpecStoreEditor : Editor
         
         if (specStore.filePath != null && specStore.filePath.Length > 5)
         {
-            fullPath = Application.dataPath + specStore.filePath;
+            fullPath = Application.dataPath + "/" + specStore.filePath;
         }
         else
         {
