@@ -2,8 +2,9 @@
 using System.Collections;
 using System.Collections.Generic;
 using DG.Tweening;
+using System;
 
-public class SoundSystem : MonoBehaviour
+public class SoundSystem : MonoBehaviour, ISerializationCallbackReceiver
 {
     [System.Serializable]
     public class ClipEntry
@@ -23,14 +24,6 @@ public class SoundSystem : MonoBehaviour
     // Use this for initialization
     void Start()
     {
-        lookupTable = new Dictionary<string, int>();
-        for (int i = 0; i < clips.Length; i++)
-        {
-            if (!lookupTable.ContainsKey(clips[i].name))
-            {
-                lookupTable.Add(clips[i].name, i);
-            }
-        }
         currentBGM = "";
     }
 
@@ -191,6 +184,22 @@ public class SoundSystem : MonoBehaviour
         else
         {
             yield return null;
+        }
+    }
+
+    public void OnBeforeSerialize()
+    {
+
+    }
+
+    public void OnAfterDeserialize()
+    {
+        if (lookupTable == null)
+            lookupTable = new Dictionary<string, int>();
+
+        for (int i = 0; i < clips.Length; i++)
+        {
+            lookupTable[clips[i].name] = i;
         }
     }
 }
